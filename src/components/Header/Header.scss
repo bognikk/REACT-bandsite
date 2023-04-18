@@ -54,7 +54,7 @@
 
 			@include tablet {
 				padding: calc($padding * 1.5) 0;
-				margin-left: $margin * 3;
+				margin-left: calc($margin * 3);
 				width: auto;
 			}
 

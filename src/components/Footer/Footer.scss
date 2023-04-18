@@ -1,0 +1,179 @@
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/mixins" as *;
+
+// =========================== FOOTER ================================
+.footer {
+	// ============ footer heading and icons ============
+	@include footer-text-mobile;
+	background-color: $primary-black;
+	color: $primary-white;
+	padding: calc($padding * 2) $padding $padding;
+
+	@include tablet {
+		@include footer-text;
+		padding: calc($padding * 3) calc($padding * 2.5) calc($padding * 2);
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+
+	@include desktop {
+		@include footer-text;
+		padding: calc($padding * 2.5) calc($padding * 8) $padding;
+	}
+
+	// ============ footer title ============
+	&__title-and-icons {
+		padding-bottom: $padding;
+
+		@include tablet {
+			display: flex;
+			width: 63%;
+			padding-bottom: calc($padding * 1.5);
+		}
+	}
+
+	&__title {
+		@include section-heading-mobile;
+		padding-bottom: $padding;
+
+		@include tablet {
+			@include section-heading;
+			font-weight: 600;
+
+			font-size: calc($padding * 2.35);
+			padding-top: calc($padding/4);
+		}
+	}
+
+	// ============ footer icons ============
+	&__icons-container {
+		margin-bottom: calc($margin / 2);
+
+		@include tablet {
+			display: flex;
+			align-items: center;
+			height: 50px;
+			width: 31.5%;
+			margin-left: calc($margin * 1.5);
+		}
+
+		@include tablet {
+			margin-left: calc($margin * 2);
+		}
+
+		@include desktop {
+			margin-left: calc($margin * 3);
+		}
+	}
+
+	&__link {
+		display: inline-block;
+		width: 25px;
+		height: 25px;
+		margin-right: calc($margin * 1.2);
+
+		@include tablet {
+			width: 25px;
+			height: 25px;
+		}
+	}
+
+	&__img {
+		display: block !important;
+		width: 24px;
+		height: 24px;
+
+		@include tablet {
+			width: 25px;
+			height: 25px;
+		}
+
+		&:hover {
+			opacity: 0.5;
+		}
+	}
+
+	// ============ footer info ============
+	&__info {
+		margin-bottom: calc($padding * 2);
+
+		@include tablet {
+			@include footer-text;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			width: 100%;
+		}
+
+		@include desktop {
+			display: flex;
+			flex-direction: row;
+			justify-content: start;
+			width: 100%;
+		}
+	}
+	// ============ footer card ============
+
+	&__card {
+		padding-bottom: calc($padding * 1.5);
+
+		@include tablet {
+			width: 29.5%;
+			padding-bottom: 0;
+		}
+
+		@include desktop {
+			width: 26%;
+		}
+
+		&__name {
+			font-weight: 600;
+			padding-bottom: $padding;
+		}
+
+		&__region {
+			padding-bottom: $padding;
+		}
+
+		&__email {
+			@include footer-text;
+			text-decoration: none;
+			color: #fff;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	// ============ footer logo ============
+	&__logo {
+		@include tablet {
+			position: absolute;
+			top: calc($padding * 4.1);
+			right: calc($padding * 2.5);
+		}
+
+		@include desktop {
+			right: calc($padding * 8.5);
+		}
+	}
+
+	// ============ footer copyright ============
+
+	&__copyright {
+		@include special-text-mobile;
+		font-size: calc($padding/1.5);
+		margin-top: calc($padding/1.5);
+		font-weight: 600;
+
+		@include tablet {
+			@include special-text;
+			font-size: calc($padding/1.2);
+			font-weight: normal;
+			margin-bottom: $padding;
+		}
+	}
+}

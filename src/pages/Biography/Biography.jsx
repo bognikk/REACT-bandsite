@@ -5,7 +5,7 @@ import "./Biography.scss";
 const Biography = () => {
 	return (
 		<Hero>
-			<h1 class="hero__main-heading">The Bees Knees</h1>
+			<h1 className="hero__main-heading">The Bees Knees</h1>
 		</Hero>
 	);
 };
