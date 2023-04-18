@@ -1,0 +1,102 @@
+@use "./variables" as *;
+@use "./typography" as *;
+
+// DOCUMENT
+@mixin whole-document-rules {
+	*,
+	* ::after,
+	* ::before {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: "Avenir Regular";
+	}
+}
+
+// TABLET AND DESKTOP TEXT AND HEADINGS
+@mixin main-heading {
+	font-size: 60px;
+	line-height: 68px;
+	font-weight: 700;
+}
+
+@mixin section-heading {
+	font-size: 36px;
+	line-height: 44px;
+	font-weight: 700;
+}
+
+@mixin subheading {
+	font-size: 24px;
+	line-height: 32px;
+	font-weight: 600;
+}
+
+@mixin body-text {
+	font-size: 14px;
+	line-height: 22px;
+	font-weight: 400;
+}
+
+@mixin footer-text {
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+}
+
+@mixin special-text {
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: 700;
+}
+
+// MOBILE TEXT AND HEADINGS
+@mixin main-heading-mobile {
+	font-size: 24px;
+	line-height: 32px;
+	font-weight: 700;
+}
+
+@mixin section-heading-mobile {
+	font-size: 24px;
+	line-height: 32px;
+	font-weight: 700;
+}
+
+@mixin subheading-mobile {
+	font-size: 14px;
+	line-height: 22px;
+	font-weight: 600;
+}
+
+@mixin body-text-mobile {
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: 400;
+}
+
+@mixin footer-text-mobile {
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: 400;
+}
+
+@mixin special-text-mobile {
+	font-size: 10px;
+	line-height: 20px;
+	font-weight: 700;
+}
+
+// MEDIA QUERIES
+
+@mixin tablet {
+	@media (min-width: $tablet-breakpoint) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: $desktop-breakpoint) {
+		@content;
+	}
+}
