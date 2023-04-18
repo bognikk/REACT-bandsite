@@ -1,0 +1,40 @@
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/mixins" as *;
+
+// =========================== HERO ================================
+.hero {
+	background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url("../../assets/images/hero-bio.jpg") center/cover no-repeat;
+	max-width: 100%;
+	height: 60vw;
+	display: flex;
+	align-items: center;
+	color: $primary-white;
+	padding: $padding;
+
+	@include tablet {
+		height: 58vw;
+		background-position: bottom;
+	}
+
+	@include desktop {
+		height: 55vw;
+		background-position: top;
+	}
+
+	// ============ hero heading ============
+	&__main-heading {
+		@include main-heading-mobile;
+		font-family: "Avenir Demi";
+
+		@include tablet {
+			@include main-heading;
+			padding: $padding * 2;
+		}
+
+		@include desktop {
+			padding: $padding * 8;
+		}
+	}
+}
