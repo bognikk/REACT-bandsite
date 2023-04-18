@@ -1,0 +1,132 @@
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/mixins" as *;
+
+// =========================== ABOUT ================================
+.about {
+	@include body-text-mobile;
+	padding: calc($padding * 1.5) $padding calc($padding/2) $padding;
+	color: $primary-black;
+
+	@include tablet {
+		@include body-text;
+		padding: calc($padding * 3) calc($padding * 2) calc($padding * 2);
+	}
+
+	@include desktop {
+		padding: calc($padding * 3) calc($padding * 8) calc($padding * 2);
+	}
+
+	// ============ heading ============
+	&__heading {
+		@include section-heading-mobile;
+		font-weight: 600;
+		padding-bottom: calc($padding/4);
+
+		@include tablet {
+			@include section-heading;
+		}
+	}
+
+	// ============ img ============
+	&__img {
+		max-width: 100%;
+		padding: calc($padding/3) 0;
+
+		@include tablet {
+			padding: calc($padding * 1.5) calc($padding * 4);
+		}
+
+		@include desktop {
+			padding: calc($padding * 2) calc($padding * 5.5);
+		}
+	}
+
+	// ============ quote ============
+	&__quote {
+		font-weight: 700;
+		line-height: calc($padding * 1.4);
+		word-spacing: 0.4px;
+		letter-spacing: 0.2px;
+		margin: $margin/4 0;
+
+		@include tablet {
+			margin: 0 calc($margin * 4);
+			font-size: 21.1px;
+			line-height: calc($padding * 1.9);
+		}
+
+		@include desktop {
+			margin: 0 calc($margin * 5.5);
+			font-size: 21px;
+			width: 65%;
+		}
+	}
+
+	// ============ quote credits ============
+	&__quote-credits {
+		margin-bottom: calc($margin * 1.5);
+		font-weight: 700;
+		line-height: calc($padding * 1.4);
+		word-spacing: 0.6px;
+		letter-spacing: 0.4px;
+
+		@include tablet {
+			margin: calc($margin/2) calc($margin * 4);
+			font-size: 15px;
+		}
+
+		@include desktop {
+			margin: calc($margin/2) calc($margin * 5.5);
+			font-size: 15px;
+			line-height: calc($padding * 2.2);
+			word-spacing: 0.6px;
+			letter-spacing: 0.4px;
+		}
+	}
+
+	// ============ article ============
+
+	.article {
+		@include tablet {
+			padding: 0 calc($padding * 4);
+		}
+
+		@include desktop {
+			padding: 0 calc($padding * 5.5);
+		}
+
+		&__heading {
+			@include subheading-mobile;
+			margin: $margin 0;
+
+			@include tablet {
+				@include subheading;
+				font-weight: 700;
+				margin: calc($margin * 3) 0 $margin;
+			}
+		}
+
+		&__text-container {
+			@include tablet {
+				display: flex;
+				justify-content: space-between;
+			}
+		}
+
+		&__text {
+			@include body-text-mobile;
+			padding: 0 calc($padding/1.9) calc($padding/2) 0;
+
+			@include tablet {
+				@include body-text;
+				padding: 0;
+				width: 48%;
+			}
+
+			@include desktop {
+				width: 49%;
+			}
+		}
+	}
+}

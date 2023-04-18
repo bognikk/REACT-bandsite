@@ -12,19 +12,10 @@ const Footer = () => {
 				<h2 className="footer__title">Get in Touch</h2>
 				<div className="footer__icons-container">
 					<a className="footer__link" href="https://instagram.com">
-						<img
-							className="footer__img"
-							src="../../assets/icons/Icon-instagram.svg"
-							alt="instagram"
-						/>
+						<img className="footer__img" src={instagramIcon} alt="instagram" />
 					</a>
 					<a className="footer__link" href="https://facebook.com">
-						<img
-							className="footer__img"
-							src={facebookIcon}
-							alt="facebook"
-							style={{ display: "block" }}
-						/>
+						<img className="footer__img" src={facebookIcon} alt="facebook" />
 					</a>
 					<a className="footer__link" href="https://twitter.com">
 						<img className="footer__img" src={twitterIcon} alt="twitter" />
