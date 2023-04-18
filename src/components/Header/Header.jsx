@@ -1,21 +1,20 @@
 import "./Header.scss";
 
 import logoImg from "../../assets/logos/Logo-bandsite.svg";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
 	return (
 		<header className="header">
-			<a className="header__link" href="./index.html">
-				<img className="header__logo" src={logoImg} alt="bandsite" />
-			</a>
+			<img className="header__logo" src={logoImg} alt="bandsite" />
 			<nav className="nav">
 				<ul className="nav__list">
-					<a className="nav__link nav__link--active" href="#Biography">
-						<ul className="nav__item">Biography</ul>
-					</a>
-					<a className="nav__link" href="#Shows">
-						<ul className="nav__item">Shows</ul>
-					</a>
+					<NavLink className="nav__link nav__link--active" to="/biography">
+						<li className="nav__item">Biography</li>
+					</NavLink>
+					<NavLink className="nav__link" to="/shows">
+						<li className="nav__item">Shows</li>
+					</NavLink>
 				</ul>
 			</nav>
 		</header>
