@@ -4,22 +4,22 @@ import aboutImg from "../../assets/images/band.jpg";
 
 const About = () => {
 	return (
-		<main class="about">
-			<h2 class="about__heading">About the Musicians</h2>
-			<img class="about__img" src={aboutImg} alt="band" />
+		<main className="about">
+			<h2 className="about__heading">About the Musicians</h2>
+			<img className="about__img" src={aboutImg} alt="band" />
 
-			<p class="about__quote">
+			<p className="about__quote">
 				"We push each other to be the best. It’s not uncommon for one of us to
 				say ‘this needs to be better, back to the drawing board'"
 			</p>
-			<p class="about__quote-credits">
+			<p className="about__quote-credits">
 				- Bryan Teddy, lead vocalist of The Bees Knees
 			</p>
 
-			<article class="article">
-				<h3 class="article__heading">The Bees Knees</h3>
-				<div class="article__text-container">
-					<p class="article__text">
+			<article className="article">
+				<h3 className="article__heading">The Bees Knees</h3>
+				<div className="article__text-container">
+					<p className="article__text">
 						The Bees Knees is a pop rock band originating from San Francisco,
 						California. The band consists of lead vocalist Bryan Teddy,
 						guitarist Mack Tolkens, guitarist Andrew Green, bassist Kent Zulkee
@@ -30,7 +30,7 @@ const About = () => {
 						could succeed even further, pushing them to sign with Magenta
 						Records.
 					</p>
-					<p class="article__text">
+					<p className="article__text">
 						From there, the band has soared, gaining international recognition
 						and ranking in the top 10 on the Poster Charts. New fans immediately
 						fell in love with the band’s original and organic attitude,

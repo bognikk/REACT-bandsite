@@ -1,0 +1,64 @@
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/mixins" as *;
+
+// =========================== GALLERY ================================
+.gallery {
+	padding: $padding $padding calc($padding/2);
+	background-color: $secondary-white;
+
+	@include tablet {
+		padding: calc($padding * 1.5) calc($padding * 2);
+		text-align: center;
+	}
+
+	@include desktop {
+		padding: calc($padding * 1.5) calc($padding * 8.5);
+	}
+
+	// ============ heading ============
+	&__heading {
+		@include section-heading-mobile;
+		font-weight: 600;
+		padding: calc($padding/4) 0;
+		text-align: left;
+		color: $primary-black;
+
+		@include tablet {
+			@include section-heading;
+			padding-top: calc($padding * 2);
+		}
+
+		@include desktop {
+			padding-bottom: calc($padding * 1.5);
+		}
+	}
+
+	// ============ imgs ============
+	&__img-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	&__img {
+		padding: calc($padding/2) 0;
+		width: 100%;
+		height: auto;
+		filter: grayscale(100%);
+
+		&:hover {
+			filter: grayscale(0%);
+		}
+
+		@include tablet {
+			width: 30.7%;
+			padding: $padding 0 calc($padding/2);
+		}
+
+		@include desktop {
+			width: 32%;
+			padding: $padding 0 calc($padding/4);
+		}
+	}
+}
