@@ -23,6 +23,51 @@
 		background-position: top;
 	}
 
+	&.showsPage {
+		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+			url("../../assets/images/hero-shows.jpg") center no-repeat;
+		background-size: cover;
+		max-width: 100%;
+		min-height: 86vw;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		color: $primary-white;
+		padding: $padding * 2 $padding;
+
+		@include tablet {
+			background-position: bottom;
+			padding: $padding * 4 $padding * 2.5;
+			min-height: 65vw;
+			max-height: 100vh;
+			background-position: center;
+			justify-content: center;
+		}
+
+		@include desktop {
+			min-height: 50vw;
+			max-height: 100vh;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+			background-position-y: -145px;
+			padding: $padding * 4 $padding * 8;
+		}
+	}
+
+	// ============ hero text ============
+	&__text-container {
+		min-height: 100px;
+	}
+
+	&__text {
+		@include body-text;
+
+		@include tablet {
+			@include subheading;
+		}
+	}
+
 	// ============ hero heading ============
 	&__main-heading {
 		@include main-heading-mobile;
@@ -35,6 +80,44 @@
 
 		@include desktop {
 			padding: $padding * 8;
+		}
+
+		.showsPage & {
+			padding: $padding 0 $padding;
+			font-weight: 600;
+			font-size: 8vw;
+			line-height: 10vw;
+			width: 80%;
+
+			@include tablet {
+				@include main-heading;
+				padding: $padding/1.5 0 $padding * 3 0;
+				max-width: 80%;
+			}
+
+			@include desktop {
+				width: 85%;
+				padding: $padding * 2 0 $padding * 3 0;
+			}
+		}
+	}
+
+	// ============ hero song ============
+	&__song {
+		// height: 33vw;
+		height: 40%;
+		border: none;
+
+		@include tablet {
+			width: 60%;
+			// height: 16vw;
+			// height: auto;
+		}
+
+		@include desktop {
+			width: 65%;
+			// height: 140px;
+			// height: auto;
 		}
 	}
 }

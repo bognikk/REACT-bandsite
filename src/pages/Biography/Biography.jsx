@@ -8,7 +8,7 @@ import "./Biography.scss";
 const Biography = () => {
 	return (
 		<>
-			<Hero>
+			<Hero classProp="hero bioPage">
 				<h1 className="hero__main-heading">The Bees Knees</h1>
 			</Hero>
 			<About />
