@@ -1,6 +1,7 @@
 import About from "../../components/About/About";
 import Gallery from "../../components/Gallery/Gallery";
 import Hero from "../../components/Hero/Hero";
+import Social from "../../components/Social/Social";
 
 import "./Biography.scss";
 
@@ -12,6 +13,7 @@ const Biography = () => {
 			</Hero>
 			<About />
 			<Gallery />
+			<Social />
 		</>
 	);
 };
