@@ -19,8 +19,8 @@
 	// ============ heading ============
 	&__heading {
 		@include section-heading-mobile;
-		font-weight: 600;
 		padding: calc($padding/4) 0;
+		font-weight: 600;
 		text-align: left;
 		color: $primary-black;
 
@@ -42,9 +42,9 @@
 	}
 
 	&__img {
-		padding: calc($padding/2) 0;
 		width: 100%;
 		height: auto;
+		padding: calc($padding/2) 0;
 		filter: grayscale(100%);
 
 		&:hover {

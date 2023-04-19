@@ -4,14 +4,14 @@
 
 // =========================== HERO ================================
 .hero {
-	background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-		url("../../assets/images/hero-bio.jpg") center/cover no-repeat;
-	max-width: 100%;
-	height: 60vw;
 	display: flex;
 	align-items: center;
-	color: $primary-white;
+	max-width: 100%;
+	height: 60vw;
 	padding: $padding;
+	color: $primary-white;
+	background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url("../../assets/images/hero-bio.jpg") center/cover no-repeat;
 
 	@include tablet {
 		height: 58vw;
@@ -24,32 +24,31 @@
 	}
 
 	&.showsPage {
-		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-			url("../../assets/images/hero-shows.jpg") center no-repeat;
-		background-size: cover;
-		max-width: 100%;
-		min-height: 86vw;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
-		color: $primary-white;
+		max-width: 100%;
+		min-height: 86vw;
 		padding: $padding * 2 $padding;
+		color: $primary-white;
+		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+			url("../../assets/images/hero-shows.jpg") center no-repeat;
+		background-size: cover;
 
 		@include tablet {
-			background-position: bottom;
-			padding: $padding * 4 $padding * 2.5;
+			justify-content: center;
 			min-height: 65vw;
 			max-height: 100vh;
+			padding: $padding * 4 $padding * 2.5;
 			background-position: center;
-			justify-content: center;
 		}
 
 		@include desktop {
-			min-height: 50vw;
-			max-height: 100vh;
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-around;
+			min-height: 50vw;
+			max-height: 100vh;
 			background-position-y: -145px;
 			padding: $padding * 4 $padding * 8;
 		}
@@ -83,16 +82,16 @@
 		}
 
 		.showsPage & {
+			width: 80%;
 			padding: $padding 0 $padding;
 			font-weight: 600;
 			font-size: 8vw;
 			line-height: 10vw;
-			width: 80%;
 
 			@include tablet {
 				@include main-heading;
-				padding: $padding/1.5 0 $padding * 3 0;
 				max-width: 80%;
+				padding: $padding/1.5 0 $padding * 3 0;
 			}
 
 			@include desktop {
@@ -104,20 +103,17 @@
 
 	// ============ hero song ============
 	&__song {
-		// height: 33vw;
-		height: 40%;
+		height: 50%;
+		width: 100%;
 		border: none;
 
 		@include tablet {
 			width: 60%;
-			// height: 16vw;
-			// height: auto;
 		}
 
 		@include desktop {
+			height: 40%;
 			width: 65%;
-			// height: 140px;
-			// height: auto;
 		}
 	}
 }

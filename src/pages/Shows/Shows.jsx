@@ -1,8 +1,6 @@
 import Gigs from "../../components/Gigs/Gigs";
 import Hero from "../../components/Hero/Hero";
 
-import "./Shows.scss";
-
 const Shows = () => {
 	return (
 		<>

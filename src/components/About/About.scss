@@ -20,8 +20,8 @@
 	// ============ heading ============
 	&__heading {
 		@include section-heading-mobile;
-		font-weight: 600;
 		padding-bottom: calc($padding/4);
+		font-weight: 600;
 
 		@include tablet {
 			@include section-heading;
@@ -44,11 +44,11 @@
 
 	// ============ quote ============
 	&__quote {
+		margin: calc($margin/4) 0;
 		font-weight: 700;
 		line-height: calc($padding * 1.4);
 		word-spacing: 0.4px;
 		letter-spacing: 0.2px;
-		margin: $margin/4 0;
 
 		@include tablet {
 			margin: 0 calc($margin * 4);
@@ -57,9 +57,9 @@
 		}
 
 		@include desktop {
+			width: 65%;
 			margin: 0 calc($margin * 5.5);
 			font-size: 21px;
-			width: 65%;
 		}
 	}
 
@@ -102,8 +102,8 @@
 
 			@include tablet {
 				@include subheading;
-				font-weight: 700;
 				margin: calc($margin * 3) 0 $margin;
+				font-weight: 700;
 			}
 		}
 
@@ -120,8 +120,8 @@
 
 			@include tablet {
 				@include body-text;
-				padding: 0;
 				width: 48%;
+				padding: 0;
 			}
 
 			@include desktop {

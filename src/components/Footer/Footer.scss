@@ -6,16 +6,18 @@
 .footer {
 	// ============ footer heading and icons ============
 	@include footer-text-mobile;
+	padding: calc($padding * 2) $padding $padding;
 	background-color: $primary-black;
 	color: $primary-white;
-	padding: calc($padding * 2) $padding $padding;
+	text-align: center;
 
 	@include tablet {
 		@include footer-text;
-		padding: calc($padding * 3) calc($padding * 2.5) calc($padding * 2);
+		position: relative;
 		display: flex;
 		flex-direction: column;
-		position: relative;
+		padding: calc($padding * 3) calc($padding * 2.5) calc($padding * 2);
+		text-align: left;
 	}
 
 	@include desktop {
@@ -40,10 +42,9 @@
 
 		@include tablet {
 			@include section-heading;
-			font-weight: 600;
-
-			font-size: calc($padding * 2.35);
 			padding-top: calc($padding/4);
+			font-weight: 600;
+			font-size: calc($padding * 2.35);
 		}
 	}
 
@@ -165,15 +166,15 @@
 
 	&__copyright {
 		@include special-text-mobile;
-		font-size: calc($padding/1.5);
 		margin-top: calc($padding/1.5);
+		font-size: calc($padding/1.5);
 		font-weight: 600;
 
 		@include tablet {
 			@include special-text;
+			margin-bottom: $padding;
 			font-size: calc($padding/1.2);
 			font-weight: normal;
-			margin-bottom: $padding;
 		}
 	}
 }

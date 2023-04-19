@@ -8,33 +8,33 @@
 	padding: $padding $padding 0;
 
 	@include tablet {
-		padding: $padding $padding * 2.5 $padding * 2;
+		padding: $padding calc($padding * 2.5) calc($padding * 2);
 	}
 
 	@include desktop {
 		display: flex;
-		padding: $padding * 3 $padding * 8.5 $padding * 2;
+		padding: calc($padding * 3) calc($padding * 8.5) calc($padding * 2);
 	}
 
 	&__heading {
 		@include section-heading;
-		font-weight: 600;
 		padding: $padding 0;
+		font-weight: 600;
 
 		@include tablet {
-			padding: 0 $padding * 9.5 0 0;
-			padding: $padding * 2 0;
+			padding: 0 calc($padding * 9.5) 0 0;
+			padding: calc($padding * 2) 0;
 		}
 
 		@include desktop {
-			padding: 0 $padding * 9.5 0 0;
+			padding: 0 calc($padding * 9.5) 0 0;
 		}
 	}
 
 	&__main-container {
 		@include desktop {
+			padding-top: calc($padding * 1.5);
 			width: 100%;
-			padding-top: $padding * 1.5;
 		}
 	}
 
@@ -55,8 +55,8 @@
 		&__title {
 			@include tablet {
 				display: flex;
-				color: $primary-gray;
 				width: 30%;
+				color: $primary-gray;
 				font-size: 13px;
 			}
 
@@ -75,13 +75,13 @@
 	}
 
 	.card {
-		border-bottom: 2.5px solid $secondary-gray;
 		margin-bottom: $margin;
+		border-bottom: 2.5px solid $secondary-gray;
 
 		@include tablet {
+			position: relative;
 			display: flex;
 			align-items: center;
-			position: relative;
 			margin-bottom: 0;
 		}
 
@@ -90,7 +90,9 @@
 		}
 
 		&__section {
-			padding-bottom: $padding/1.5;
+			display: inline-block;
+			width: 33.33%;
+			padding-bottom: calc($padding/1.5);
 
 			@include tablet {
 				width: 30%;
@@ -111,9 +113,9 @@
 
 			&__title {
 				@include special-text-mobile;
+				padding-bottom: calc($padding/10);
 				font-weight: 600;
 				color: $primary-gray;
-				padding-bottom: $padding/10;
 
 				@include tablet {
 					display: none;
@@ -136,16 +138,16 @@
 		}
 
 		&__btn {
+			display: block;
+			width: 50%;
+			padding: calc($padding/2 + 3px) $padding/2 $padding/2;
+			margin: calc($margin/2) auto $margin;
 			font-size: 18px;
-			margin: $margin/2 0 $margin;
-
 			font-weight: 600;
-			height: 40px;
-			background-color: $primary-black;
-			width: 100%;
+			border: none;
 			border-radius: 4px;
 			color: $primary-white;
-			border: none;
+			background-color: $primary-black;
 
 			&:hover {
 				background-color: black;
@@ -153,11 +155,9 @@
 			}
 
 			@include tablet {
-				margin: $margin 0;
-
 				min-width: 150px;
 				max-width: 150px;
-				padding: 0 $padding;
+				margin: $margin 0;
 				font-size: 16px;
 			}
 		}
