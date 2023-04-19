@@ -1,0 +1,165 @@
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/mixins" as *;
+
+// =========================== GIGS ================================
+
+.gigs {
+	padding: $padding $padding 0;
+
+	@include tablet {
+		padding: $padding $padding * 2.5 $padding * 2;
+	}
+
+	@include desktop {
+		display: flex;
+		padding: $padding * 3 $padding * 8.5 $padding * 2;
+	}
+
+	&__heading {
+		@include section-heading;
+		font-weight: 600;
+		padding: $padding 0;
+
+		@include tablet {
+			padding: 0 $padding * 9.5 0 0;
+			padding: $padding * 2 0;
+		}
+
+		@include desktop {
+			padding: 0 $padding * 9.5 0 0;
+		}
+	}
+
+	&__main-container {
+		@include desktop {
+			width: 100%;
+			padding-top: $padding * 1.5;
+		}
+	}
+
+	&__helping-titles {
+		display: none;
+
+		& > .card__btn {
+			visibility: hidden;
+		}
+
+		@include tablet {
+			display: flex;
+			height: 20px;
+			font-weight: 600;
+			color: $primary-black;
+		}
+
+		&__title {
+			@include tablet {
+				display: flex;
+				color: $primary-gray;
+				width: 30%;
+				font-size: 13px;
+			}
+
+			@include desktop {
+				&:nth-child(1) {
+					width: 40%;
+				}
+				&:nth-child(2) {
+					width: 25%;
+				}
+				&:nth-child(3) {
+					width: 25%;
+				}
+			}
+		}
+	}
+
+	.card {
+		border-bottom: 2.5px solid $secondary-gray;
+		margin-bottom: $margin;
+
+		@include tablet {
+			display: flex;
+			align-items: center;
+			position: relative;
+			margin-bottom: 0;
+		}
+
+		@include desktop {
+			justify-content: space-between;
+		}
+
+		&__section {
+			padding-bottom: $padding/1.5;
+
+			@include tablet {
+				width: 30%;
+				padding: 0;
+			}
+
+			@include desktop {
+				&:nth-child(1) {
+					width: 40%;
+				}
+				&:nth-child(2) {
+					width: 25%;
+				}
+				&:nth-child(3) {
+					width: 25%;
+				}
+			}
+
+			&__title {
+				@include special-text-mobile;
+				font-weight: 600;
+				color: $primary-gray;
+				padding-bottom: $padding/10;
+
+				@include tablet {
+					display: none;
+				}
+			}
+
+			&__text {
+				@include body-text-mobile;
+
+				&--text-bolder {
+					font-weight: 600;
+					color: $primary-black;
+				}
+
+				@include tablet {
+					padding: $padding 0;
+					font-size: 15px;
+				}
+			}
+		}
+
+		&__btn {
+			font-size: 18px;
+			margin: $margin/2 0 $margin;
+
+			font-weight: 600;
+			height: 40px;
+			background-color: $primary-black;
+			width: 100%;
+			border-radius: 4px;
+			color: $primary-white;
+			border: none;
+
+			&:hover {
+				background-color: black;
+				cursor: pointer;
+			}
+
+			@include tablet {
+				margin: $margin 0;
+
+				min-width: 150px;
+				max-width: 150px;
+				padding: 0 $padding;
+				font-size: 16px;
+			}
+		}
+	}
+}

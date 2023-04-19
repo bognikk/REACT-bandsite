@@ -18,7 +18,7 @@ const Social = () => {
 						placeholder="Enter your name"
 					/>
 
-					<label className="form__label" for="comment">
+					<label className="form__label" htmlFor="comment">
 						COMMENT
 					</label>
 					<textarea
