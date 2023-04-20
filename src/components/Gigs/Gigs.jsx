@@ -8,25 +8,6 @@ const Gigs = () => {
 	const API_KEY = "40518c69-705d-4039-82fd-8693758271c5";
 
 	useEffect(() => {
-		// const getShows = () => {
-		// 	axios
-		// 		.get(`${BASE_URL}/showdates?api_key=${API_KEY}`)
-		// 		.then((resp) => {
-		// 			const ALL_SHOWS = [];
-		// 			resp.data.forEach((show) => {
-		// 				ALL_SHOWS.push({
-		// 					date: new Date(Number(show.date)).toDateString(),
-		// 					venue: show.place,
-		// 					location: show.location,
-		// 				});
-		// 			});
-		// 			setShows(ALL_SHOWS);
-		// 		})
-		// 		.catch((err) => {
-		// 			console.log(err);
-		// 		});
-		// };
-
 		const getShows = async () => {
 			const res = await axios.get(`${BASE_URL}/showdates?api_key=${API_KEY}`);
 
