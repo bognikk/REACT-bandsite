@@ -81,6 +81,15 @@
 			padding: $padding * 8;
 		}
 
+		a {
+			color: white;
+
+			&:hover,
+			&:focus {
+				text-decoration: none;
+			}
+		}
+
 		.showsPage & {
 			width: 80%;
 			padding: $padding 0 $padding;

@@ -94,6 +94,10 @@
 			@include body-text;
 			height: 48px;
 		}
+
+		.invalid {
+			border: 2px solid red;
+		}
 	}
 
 	&__textarea {
@@ -117,6 +121,17 @@
 			color: black;
 			text-align: left;
 		}
+	}
+
+	.invalidField {
+		border: 2px solid red;
+	}
+
+	.invalidInput {
+		margin-top: -0.7rem;
+		margin-bottom: 1rem;
+		color: red;
+		font-size: 13px;
 	}
 
 	&__btn {
