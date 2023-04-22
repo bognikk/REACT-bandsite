@@ -149,7 +149,8 @@
 			color: $primary-white;
 			background-color: $primary-black;
 
-			&:hover {
+			&:hover,
+			&:focus {
 				background-color: black;
 				cursor: pointer;
 			}

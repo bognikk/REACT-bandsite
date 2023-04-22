@@ -67,6 +67,7 @@
 			}
 
 			&:hover,
+			&:focus,
 			&--active {
 				border-bottom: 3.5px solid white;
 				color: $primary-white;

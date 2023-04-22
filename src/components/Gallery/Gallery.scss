@@ -47,7 +47,8 @@
 		padding: calc($padding/2) 0;
 		filter: grayscale(100%);
 
-		&:hover {
+		&:hover,
+		&:focus {
 			filter: grayscale(0%);
 		}
 

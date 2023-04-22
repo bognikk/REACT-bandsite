@@ -60,6 +60,10 @@
 		&:focus {
 			border: 2px solid black;
 			outline: none;
+
+			&::placeholder {
+				visibility: hidden;
+			}
 		}
 
 		&::placeholder {
@@ -91,6 +95,10 @@
 		&:focus {
 			border: 2px solid black;
 			outline: none !important;
+
+			&::placeholder {
+				visibility: hidden;
+			}
 		}
 
 		&::placeholder {
@@ -121,7 +129,8 @@
 		border: none;
 		background-color: $primary-black;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			background-color: black;
 			cursor: pointer;
 		}

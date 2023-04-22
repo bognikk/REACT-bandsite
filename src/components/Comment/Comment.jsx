@@ -16,23 +16,17 @@ const Comment = ({ commentsProp, onDelete, onLike }) => {
 					<div className="comment__container__lower">
 						<div className="comment__container__likes-container">
 							<p className="comment__likes">{comment.likes}</p>
-							<a href="">
-								<img
-									onClick={() => onLike(comment)}
-									className="comment__icon"
-									src={likeIcon}
-									alt="like button"
-									tabIndex={0}
-								/>
-							</a>
+							<button onClick={() => onLike(comment)}>
+								<img className="comment__icon" src={likeIcon} alt="like icon" />
+							</button>
 						</div>
-						<img
-							onClick={() => onDelete(comment.id)}
-							className="comment__icon"
-							src={deleteIcon}
-							alt="delete button"
-							tabIndex={0}
-						/>
+						<button onClick={() => onDelete(comment.id)}>
+							<img
+								className="comment__icon"
+								src={deleteIcon}
+								alt="delete icon"
+							/>
+						</button>
 					</div>
 				</div>
 			</div>
