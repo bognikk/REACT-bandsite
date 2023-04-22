@@ -2,31 +2,8 @@
 @use "../../styles/typography" as *;
 @use "../../styles/mixins" as *;
 
-// =========================== SOCIAL ================================
-.social {
-	padding: $padding;
-
-	@include tablet {
-		padding: calc($padding * 3) calc($padding * 2.5) $padding;
-	}
-
-	@include desktop {
-		padding: calc($padding * 3) calc($padding * 8) $padding;
-	}
-
-	&__heading {
-		@include section-heading-mobile;
-		color: $primary-black;
-		font-weight: 600;
-
-		@include tablet {
-			@include section-heading;
-		}
-	}
-}
-
-// ============ POSTS/COMMENTS ============
-.posts-container {
+// ============ COMMENTS ============
+.comments-container {
 	display: flex;
 	flex-wrap: wrap;
 
@@ -39,7 +16,7 @@
 	}
 }
 
-.post {
+.comment {
 	@include body-text-mobile;
 	display: flex;
 	padding-top: $padding;

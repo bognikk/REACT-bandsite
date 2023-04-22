@@ -1,0 +1,137 @@
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/mixins" as *;
+
+// ============ form ============
+.form-container {
+	position: relative;
+	display: flex;
+	padding: $padding 0;
+
+	@include tablet {
+		padding: $padding * 2 $padding * 4 $padding;
+	}
+
+	@include desktop {
+		padding: $padding * 2 $padding * 16.5 $padding;
+	}
+}
+
+.img-container {
+	height: 36px;
+	min-width: 36px;
+	margin: $margin $margin 0 0;
+	border-radius: 50%;
+	background: url("../../assets/images/Mohan-muruge.jpg") center/cover no-repeat;
+
+	@include tablet {
+		min-width: 48px;
+		height: 48px;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	font-weight: 600;
+
+	&__label {
+		margin-bottom: 4px;
+		color: $primary-gray;
+		font-size: 10px;
+		border-radius: 4px;
+
+		@include tablet {
+			@include body-text;
+			font-weight: 600;
+		}
+	}
+
+	&__input {
+		height: 36px;
+		padding: 12px;
+		margin-bottom: $margin;
+		color: black;
+		border: 2px solid $secondary-gray;
+		border-radius: 4px;
+		background-color: $secondary-white;
+
+		&:focus {
+			border: 2px solid black;
+			outline: none;
+		}
+
+		&::placeholder {
+			opacity: 1;
+			color: black;
+		}
+
+		@include tablet {
+			@include body-text;
+			height: 48px;
+		}
+
+		.invalid {
+			border: 2px solid red;
+		}
+	}
+
+	&__textarea {
+		height: 100px;
+		min-height: 36px;
+		padding: 12px;
+		margin-bottom: $margin;
+		border-radius: 4px;
+		border: 2px solid $secondary-gray;
+		color: black;
+		resize: none;
+		background-color: $secondary-white;
+
+		&:focus {
+			border: 2px solid black;
+			outline: none !important;
+		}
+
+		&::placeholder {
+			opacity: 1;
+			color: black;
+			text-align: left;
+		}
+	}
+
+	.invalidField {
+		border: 2px solid red;
+	}
+
+	.invalidInput {
+		margin-top: -0.7rem;
+		margin-bottom: 1rem;
+		color: red;
+		font-size: 13px;
+	}
+
+	&__btn {
+		width: 100%;
+		padding: calc($padding/2 + 3px) $padding/2 $padding/2;
+		font-size: 15px;
+		color: $primary-white;
+		font-weight: 600;
+		border-radius: 4px;
+		border: none;
+		background-color: $primary-black;
+
+		&:hover {
+			background-color: black;
+			cursor: pointer;
+		}
+
+		@include tablet {
+			align-self: flex-end;
+			min-width: 150px;
+			max-width: 150px;
+			margin-bottom: $margin/2;
+			font-size: 16px;
+		}
+	}
+}
