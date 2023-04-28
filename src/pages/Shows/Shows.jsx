@@ -1,5 +1,5 @@
 import Gigs from "../../components/Gigs/Gigs";
-import Hero from "../../components/Hero/Hero";
+import Hero from "../../components/Layout/Hero/Hero";
 
 const Shows = () => {
 	return (

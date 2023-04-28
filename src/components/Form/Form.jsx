@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { useState } from "react";
 import "./Form.scss";
+import Button from "../UI/Button/Button";
 
 const BASE_URL = "https://project-1-api.herokuapp.com";
 const API_KEY = "40518c69-705d-4039-82fd-8693758271c5";
@@ -132,7 +133,9 @@ const Form = () => {
 					<p className="invalidInput">Comment must not be empty.</p>
 				)}
 
-				<button className="form__btn">COMMENT</button>
+				<Button type="submit" className="form__btn">
+					COMMENT
+				</Button>
 			</form>
 		</div>
 	);

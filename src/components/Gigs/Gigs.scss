@@ -140,26 +140,10 @@
 		&__btn {
 			display: block;
 			width: 50%;
-			padding: calc($padding/2 + 3px) $padding/2 $padding/2;
 			margin: calc($margin/2) auto $margin;
-			font-size: 18px;
-			font-weight: 600;
-			border: none;
-			border-radius: 4px;
-			color: $primary-white;
-			background-color: $primary-black;
-
-			&:hover,
-			&:focus {
-				background-color: black;
-				cursor: pointer;
-			}
 
 			@include tablet {
-				min-width: 150px;
-				max-width: 150px;
 				margin: $margin 0;
-				font-size: 16px;
 			}
 		}
 	}

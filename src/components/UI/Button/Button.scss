@@ -1,0 +1,44 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/mixins" as *;
+
+.button {
+	padding: calc($padding/2 + 3px) $padding/2 $padding/2;
+	border: none;
+	font-size: 15px;
+	font-weight: 600;
+	color: $primary-white;
+	text-align: center;
+	border-radius: 4px;
+	background-color: $primary-black;
+	font: inherit;
+	cursor: pointer;
+
+	@include tablet {
+		min-width: 150px;
+		max-width: 150px;
+		font-size: 16px;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: black;
+		cursor: pointer;
+	}
+
+	&:focus {
+		outline: 2px solid webkit-focus-ring-color;
+		outline-offset: -2px;
+	}
+
+	&:disabled,
+	&:focus:disabled,
+	&:hover:disabled,
+	&:active:disabled {
+		background: #ccc;
+		border-color: #ccc;
+		color: #666666;
+		cursor: not-allowed;
+	}
+}

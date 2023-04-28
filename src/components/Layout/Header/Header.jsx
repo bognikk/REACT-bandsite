@@ -1,6 +1,6 @@
 import "./Header.scss";
 
-import logoImg from "../../assets/logos/Logo-bandsite.svg";
+import logoImg from "../../../assets/logos/Logo-bandsite.svg";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {

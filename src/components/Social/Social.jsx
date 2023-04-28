@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 
 import Form from "../Form/Form";
 import Comment from "../Comment/Comment";
+import Modal from "../UI/Modal/Modal";
 
 const BASE_URL = "https://project-1-api.herokuapp.com";
 const API_KEY = "40518c69-705d-4039-82fd-8693758271c5";
 
 const Social = () => {
 	const [allComments, setAllComments] = useState([]);
+	const [showModal, setShowModal] = useState(false);
 
 	// ----------GET
 	const getComments = async () => {
@@ -41,12 +43,15 @@ const Social = () => {
 
 	// DELETE
 	const deleteCommentHandler = async (id) => {
-		const res = await axios.delete(
-			`${BASE_URL}/comments/${id}?api_key=${API_KEY}`
-		);
-
-		if (!res.statusText === "OK") {
-			throw new Error("Something went wrong!");
+		try {
+			const res = await axios.delete(
+				`${BASE_URL}/comment/${id}?api_key=${API_KEY}`
+			);
+			console.log(res);
+		} catch (error) {
+			if (error) {
+				setShowModal(true);
+			}
 		}
 	};
 
@@ -73,6 +78,13 @@ const Social = () => {
 				onDelete={deleteCommentHandler}
 				onLike={addLikeHandler}
 			/>
+			{showModal && (
+				<Modal
+					messageOne={"Something went wrong!"}
+					messageTwo={"Please try again later!"}
+					onClose={() => setShowModal(false)}
+				/>
+			)}
 		</section>
 	);
 };

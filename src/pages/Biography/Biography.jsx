@@ -1,6 +1,6 @@
 import About from "../../components/About/About";
 import Gallery from "../../components/Gallery/Gallery";
-import Hero from "../../components/Hero/Hero";
+import Hero from "../../components/Layout/Hero/Hero";
 import Social from "../../components/Social/Social";
 
 const Biography = () => {

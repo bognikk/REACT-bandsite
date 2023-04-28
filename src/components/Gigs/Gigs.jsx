@@ -1,6 +1,7 @@
-import "./Gigs.scss";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import Button from "../UI/Button/Button";
+import "./Gigs.scss";
 
 const Gigs = () => {
 	const [shows, setShows] = useState([]);
@@ -49,7 +50,7 @@ const Gigs = () => {
 					<p className="card__section__title">LOCATION</p>
 					<p className="card__section__text">{show.location}</p>
 				</div>
-				<button className="card__btn">BUY TICKETS</button>
+				<Button className="card__btn">BUY TICKETS</Button>
 			</div>
 		);
 	});

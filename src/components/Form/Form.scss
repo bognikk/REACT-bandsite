@@ -120,27 +120,9 @@
 	}
 
 	&__btn {
-		width: 100%;
-		padding: calc($padding/2 + 3px) $padding/2 $padding/2;
-		font-size: 15px;
-		color: $primary-white;
-		font-weight: 600;
-		border-radius: 4px;
-		border: none;
-		background-color: $primary-black;
-
-		&:hover,
-		&:focus {
-			background-color: black;
-			cursor: pointer;
-		}
-
-		@include tablet {
-			align-self: flex-end;
-			min-width: 150px;
-			max-width: 150px;
-			margin-bottom: $margin/2;
-			font-size: 16px;
-		}
+		align-self: flex-end;
+		min-width: 150px;
+		max-width: 150px;
+		margin-bottom: $margin/2;
 	}
 }

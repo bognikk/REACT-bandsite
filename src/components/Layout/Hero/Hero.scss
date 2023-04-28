@@ -1,6 +1,6 @@
-@use "../../styles/variables" as *;
-@use "../../styles/typography" as *;
-@use "../../styles/mixins" as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/mixins" as *;
 
 // =========================== HERO ================================
 .hero {
@@ -11,7 +11,7 @@
 	padding: $padding;
 	color: $primary-white;
 	background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-		url("../../assets/images/hero-bio.jpg") center/cover no-repeat;
+		url("../../../assets/images/hero-bio.jpg") center/cover no-repeat;
 
 	@include tablet {
 		height: 58vw;
@@ -32,7 +32,7 @@
 		padding: $padding * 2 $padding;
 		color: $primary-white;
 		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-			url("../../assets/images/hero-shows.jpg") center no-repeat;
+			url("../../../assets/images/hero-shows.jpg") center no-repeat;
 		background-size: cover;
 
 		@include tablet {

@@ -1,11 +1,13 @@
-import logoImg from "../../assets/logos/Logo-bandsite.svg";
-import instagramIcon from "../../assets/icons/Icon-instagram.svg";
-import facebookIcon from "../../assets/icons/Icon-facebook.svg";
-import twitterIcon from "../../assets/icons/Icon-twitter.svg";
+import logoImg from "../../../assets/logos/Logo-bandsite.svg";
+import instagramIcon from "../../../assets/icons/Icon-instagram.svg";
+import facebookIcon from "../../../assets/icons/Icon-facebook.svg";
+import twitterIcon from "../../../assets/icons/Icon-twitter.svg";
 
 import "./Footer.scss";
 
 const Footer = () => {
+	const year = new Date().getFullYear();
+
 	return (
 		<footer className="footer">
 			<div className="footer__title-and-icons">
@@ -83,7 +85,7 @@ const Footer = () => {
 
 			<img className="footer__logo" src={logoImg} alt="logo" />
 			<p className="footer__copyright">
-				Copyright The Bees Knees &copy; 2021 All Rights Reserved
+				Copyright The Bees Knees &copy; {year} All Rights Reserved
 			</p>
 		</footer>
 	);
