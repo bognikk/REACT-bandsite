@@ -63,7 +63,7 @@ const Gigs = () => {
 					<p className="gigs__helping-titles__title">DATES</p>
 					<p className="gigs__helping-titles__title">VENUE</p>
 					<p className="gigs__helping-titles__title">LOCATION</p>
-					<button className="card__btn"></button>
+					<Button className="card__btn"></Button>
 				</div>
 				{gig}
 			</main>

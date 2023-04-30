@@ -20,7 +20,7 @@ const Comment = ({ commentsProp, onDelete, onLike }) => {
 								<img className="comment__icon" src={likeIcon} alt="like icon" />
 							</button>
 						</div>
-						<button onClick={() => onDelete(comment.id)}>
+						<button onClick={() => onDelete(comment.id, comment.name)}>
 							<img
 								className="comment__icon"
 								src={deleteIcon}
