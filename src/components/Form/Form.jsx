@@ -1,4 +1,5 @@
 import axios from "axios";
+import { sendRandomPost } from "../../assets/functions/functions";
 
 import { useState } from "react";
 import "./Form.scss";
@@ -132,10 +133,14 @@ const Form = () => {
 				{commentInputIsValid && (
 					<p className="invalidInput">Comment must not be empty.</p>
 				)}
-
-				<Button type="submit" className="form__btn">
-					COMMENT
-				</Button>
+				<div className="form__actions">
+					<Button onClick={sendRandomPost} type="button" className="form__btn">
+						GENERATE RANDOM COMMENT
+					</Button>
+					<Button type="submit" className="form__btn">
+						COMMENT
+					</Button>
+				</div>
 			</form>
 		</div>
 	);

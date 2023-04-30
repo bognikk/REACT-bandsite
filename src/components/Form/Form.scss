@@ -119,10 +119,19 @@
 		font-size: 13px;
 	}
 
+	&__actions {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	&__btn {
 		align-self: flex-end;
 		min-width: 150px;
 		max-width: 150px;
-		margin-bottom: $margin/2;
+		margin-bottom: calc($margin/2);
+
+		&:first-of-type {
+			max-width: 300px;
+		}
 	}
 }
