@@ -23,4 +23,12 @@
 			@include section-heading;
 		}
 	}
+
+	&__errorMessage {
+		padding: 2rem 20.5rem 1rem;
+		font-size: 21px;
+		letter-spacing: 0.2px;
+		font-weight: 700;
+		color: rgb(231, 77, 77);
+	}
 }

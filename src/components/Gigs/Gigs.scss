@@ -74,6 +74,15 @@
 		}
 	}
 
+	&__errorMessage {
+		padding: 2rem;
+		text-align: center;
+		font-size: 21px;
+		letter-spacing: 0.2px;
+		font-weight: 700;
+		color: rgb(231, 77, 77);
+	}
+
 	.card {
 		margin-bottom: $margin;
 		border-bottom: 2.5px solid $secondary-gray;

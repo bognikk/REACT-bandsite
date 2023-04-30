@@ -8,7 +8,7 @@ import Button from "../UI/Button/Button";
 const BASE_URL = "https://project-1-api.herokuapp.com";
 const API_KEY = "40518c69-705d-4039-82fd-8693758271c5";
 
-const Form = () => {
+const Form = ({ onError }) => {
 	// ----------FORM VALIDATION
 
 	// ----------NAME
@@ -76,13 +76,16 @@ const Form = () => {
 		setEnteredCommentIsValid(true);
 
 		// POST
-		const res = await axios.post(`${BASE_URL}/comments?api_key=${API_KEY}`, {
-			name: enteredName,
-			comment: enteredComment,
-		});
-
-		if (!res.statusText === "OK") {
-			throw new Error("Something went wrong!");
+		try {
+			await axios.post(`${BASE_URL}/comments?api_key=${API_KEY}`, {
+				name: enteredName,
+				comment: enteredComment,
+			});
+		} catch (error) {
+			if (error) {
+				onError();
+				return;
+			}
 		}
 
 		setEnteredName("");
@@ -98,6 +101,7 @@ const Form = () => {
 	const commentInputClasses = commentInputIsValid
 		? "form__textarea invalidField"
 		: "form__textarea";
+
 	return (
 		<div className="form-container">
 			<div className="img-container"></div>
@@ -145,4 +149,5 @@ const Form = () => {
 		</div>
 	);
 };
+
 export default Form;

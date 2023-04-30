@@ -16,28 +16,32 @@ const Social = () => {
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
 	const [commentName, setCommentName] = useState("");
 	const [commentId, setCommentId] = useState("");
+	const [successfulFetch, setSuccessfulFetch] = useState(true);
 
 	// ----------GET
 	const getComments = async () => {
-		const res = await axios.get(`${BASE_URL}/comments?api_key=${API_KEY}`);
+		try {
+			const res = await axios.get(`${BASE_URL}/comments?api_key=${API_KEY}`);
 
-		if (!res.statusText === "OK") {
-			throw new Error("Something went wrong!");
-		}
+			let FETCHED_COMMENTS = [];
 
-		let FETCHED_COMMENTS = [];
-
-		res.data.forEach((comment) => {
-			FETCHED_COMMENTS.unshift({
-				name: comment.name,
-				text: comment.comment,
-				date: new Date(comment.timestamp).toLocaleDateString("en-GB"),
-				id: comment.id,
-				likes: comment.likes,
+			res.data.forEach((comment) => {
+				FETCHED_COMMENTS.unshift({
+					name: comment.name,
+					text: comment.comment,
+					date: new Date(comment.timestamp).toLocaleDateString("en-GB"),
+					id: comment.id,
+					likes: comment.likes,
+				});
 			});
-		});
 
-		setAllComments(FETCHED_COMMENTS);
+			setAllComments(FETCHED_COMMENTS);
+			setSuccessfulFetch(true);
+		} catch (error) {
+			if (error) {
+				setSuccessfulFetch(false);
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -53,10 +57,7 @@ const Social = () => {
 
 	const deleteCommentHandler = async (id) => {
 		try {
-			const res = await axios.delete(
-				`${BASE_URL}/comments/${id}?api_key=${API_KEY}`
-			);
-			console.log(res);
+			await axios.delete(`${BASE_URL}/comments/${id}?api_key=${API_KEY}`);
 		} catch (error) {
 			if (error) {
 				setShowAlertModal(true);
@@ -67,27 +68,34 @@ const Social = () => {
 
 	// PUT
 	const addLikeHandler = async (comment) => {
-		const res = await axios.put(
-			`${BASE_URL}/comments/${comment.id}/like?api_key=${API_KEY}`,
-			{
-				likes: 1,
+		try {
+			await axios.put(
+				`${BASE_URL}/comments/${comment.id}/like?api_key=${API_KEY}`,
+				{
+					likes: 1,
+				}
+			);
+		} catch (error) {
+			if (error) {
+				setShowAlertModal(true);
 			}
-		);
-
-		if (!res.statusText === "OK") {
-			throw new Error("Something went wrong!");
 		}
 	};
 
 	return (
 		<section className="social">
 			<h2 className="social__heading">Join the Conversation</h2>
-			<Form />
+			<Form onError={() => setShowAlertModal(true)} />
 			<Comment
 				commentsProp={allComments}
 				onDelete={confirmDeleteCommentHandler}
 				onLike={addLikeHandler}
 			/>
+			{!successfulFetch && (
+				<p className="social__errorMessage">
+					Failed to fetch comments, we are working on it!
+				</p>
+			)}
 			{showAlertModal && (
 				<Modal
 					messageTwo={"Please try again later!"}
