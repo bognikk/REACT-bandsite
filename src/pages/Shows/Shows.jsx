@@ -1,4 +1,4 @@
-import Gigs from "../../components/Gigs/Gigs";
+import { Outlet } from "react-router-dom";
 import Hero from "../../components/Layout/Hero/Hero";
 
 const Shows = () => {
@@ -19,7 +19,7 @@ const Shows = () => {
 					allowFullScreen
 				></iframe>
 			</Hero>
-			<Gigs />
+			<Outlet />
 		</>
 	);
 };

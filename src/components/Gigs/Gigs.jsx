@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Button from "../UI/Button/Button";
 
 import "./Gigs.scss";
+import { Link } from "react-router-dom";
 
 const Gigs = () => {
 	const [shows, setShows] = useState([]);
@@ -40,23 +41,27 @@ const Gigs = () => {
 
 	const gig = shows.map((show) => {
 		return (
-			<div className="card" key={show.id}>
-				<div className="card__section">
-					<p className="card__section__title">DATES</p>
-					<p className="card__section__text card__section__text--text-bolder">
-						{show.date}
-					</p>
+			<>
+				<div className="card" key={show.id}>
+					<div className="card__section">
+						<p className="card__section__title">DATES</p>
+						<p className="card__section__text card__section__text--text-bolder">
+							{show.date}
+						</p>
+					</div>
+					<div className="card__section">
+						<p className="card__section__title">VENUE</p>
+						<p className="card__section__text">{show.venue}</p>
+					</div>
+					<div className="card__section">
+						<p className="card__section__title">LOCATION</p>
+						<p className="card__section__text">{show.location}</p>
+					</div>
+					<Link to={`ticket/${show.id}`}>
+						<Button className="card__btn">BUY TICKETS</Button>
+					</Link>
 				</div>
-				<div className="card__section">
-					<p className="card__section__title">VENUE</p>
-					<p className="card__section__text">{show.venue}</p>
-				</div>
-				<div className="card__section">
-					<p className="card__section__title">LOCATION</p>
-					<p className="card__section__text">{show.location}</p>
-				</div>
-				<Button className="card__btn">BUY TICKETS</Button>
-			</div>
+			</>
 		);
 	});
 
