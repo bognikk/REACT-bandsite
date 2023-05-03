@@ -58,7 +58,7 @@ const Gigs = () => {
 						<p className="card__section__text">{show.location}</p>
 					</div>
 					<Link to={`ticket/${show.id}`}>
-						<Button className="card__btn">BUY TICKETS</Button>
+						<Button className="card__btn">VIEW EVENT</Button>
 					</Link>
 				</div>
 			</>
