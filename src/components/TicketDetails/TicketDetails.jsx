@@ -71,8 +71,7 @@ const TicketDetails = () => {
 							tempora laborum inventore, provident et voluptates! Vel sunt,
 							suscipit molestias tempore nesciunt consequuntur ratione assumenda
 							sint quibusdam soluta ullam aspernatur tempora laborum eaque
-							repudiandae ipsam, excepturi dolorum sit atque! Molestias
-							provident dolorum fuga ipsum possimus aut commodi assumenda hic..
+							repudiandae ipsam, excepturi dolorum sit atque!
 						</p>
 					</div>
 				</div>

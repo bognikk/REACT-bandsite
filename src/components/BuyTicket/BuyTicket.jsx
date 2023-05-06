@@ -1,21 +1,206 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../UI/Button/Button";
 import "./BuyTicket.scss";
+import { useEffect, useState } from "react";
 
 const BuyTicket = () => {
-	let navigate = useNavigate();
+	const BASE_URL = "https://project-1-api.herokuapp.com";
+	const API_KEY = "40518c69-705d-4039-82fd-8693758271c5";
+
+	const [ticket, setTicket] = useState({});
 
 	const params = useParams();
 	const ticketId = params.ticketId;
 
+	let navigate = useNavigate();
+
+	useEffect(() => {
+		const getShows = async () => {
+			try {
+				const res = await axios.get(`${BASE_URL}/showdates?api_key=${API_KEY}`);
+
+				const foundTicket = res.data.find((ticket) => ticket.id === ticketId);
+
+				setTicket(foundTicket);
+			} catch (error) {
+				if (error) {
+					console.log(error);
+				}
+			}
+		};
+
+		getShows();
+	}, []);
+
+	// FORM
+
+	// ----------NAME
+	const [enteredName, setEnteredName] = useState("");
+	const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
+	const [enteredNameTouched, setEnteredNameIsTouched] = useState(false);
+
+	const nameInputChangeHandler = (event) => {
+		setEnteredName(event.target.value);
+
+		if (event.target.value.trim() !== "") {
+			setEnteredNameIsValid(true);
+		}
+	};
+
+	const nameInputBlurHandler = () => {
+		setEnteredNameIsTouched(true);
+
+		if (enteredName.trim() === "") {
+			setEnteredNameIsValid(false);
+			return;
+		}
+	};
+
+	// ----------CARD
+	const [enteredCard, setEnteredCard] = useState("");
+	const [enteredCardIsValid, setEnteredCardIsValid] = useState(false);
+	const [enteredCardTouched, setEnteredCardIsTouched] = useState(false);
+
+	const cardInputChangeHandler = (event) => {
+		setEnteredCard(event.target.value);
+
+		if (event.target.value.trim() !== "") {
+			setEnteredCardIsValid(true);
+		}
+	};
+
+	const cardInputBlurHandler = () => {
+		setEnteredCardIsTouched(true);
+		console.log(enteredCard);
+
+		if (enteredCard.trim() === "" || enteredCard.length !== 16) {
+			setEnteredCardIsValid(false);
+			return;
+		} else if (enteredCard.trim() !== "" && enteredCard.trim().length === 16) {
+			setEnteredCardIsValid(true);
+		}
+	};
+
+	// ----------SUBMIT
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+
+		setEnteredNameIsTouched(true);
+		setEnteredCardIsTouched(true);
+
+		if (enteredName.trim() === "") {
+			setEnteredNameIsValid(false);
+			return;
+		}
+
+		if (enteredCard.trim() === "") {
+			setEnteredCardIsValid(false);
+			return;
+		}
+
+		setEnteredNameIsValid(true);
+		setEnteredCardIsValid(true);
+
+		// POST
+		try {
+			await axios.post(
+				`https://react-all-in-one-default-rtdb.firebaseio.com/tickets.json`,
+				{
+					name: enteredName,
+					card: enteredCard,
+				}
+			);
+		} catch (error) {
+			if (error) {
+				console.log(error);
+				return;
+			}
+		}
+
+		setEnteredName("");
+		setEnteredCard("");
+	};
+
+	const nameInputIsValid = !enteredNameIsValid && enteredNameTouched;
+	const nameInputClasses = nameInputIsValid
+		? "form__input invalidField"
+		: "form__input";
+
+	const cardInputIsValid = !enteredCardIsValid && enteredCardTouched;
+	const cardInputClasses = cardInputIsValid
+		? "form__input invalidField"
+		: "form__input";
+
 	return (
 		<section className="buyTicket">
-			<h2 className="tiketDetails__heading">Buy Ticket</h2>
-			<main className="tiketDetails__main-container">
-				<p>{ticketId}</p>
-				<div className="actions">
-					<Button onClick={() => navigate(-1)}>Go Back</Button>
-					<Button>Purchase</Button>
+			<h2 className="buyTicket__heading">Buy Ticket</h2>
+			<main className="buyTicket__main-container">
+				<div className="buyTicket__details--wrapper">
+					<div className="buyTicket__details">
+						<p>
+							<span>Date: </span>
+							{new Date(Number(ticket.date)).toDateString()}
+						</p>
+						<p>
+							<span>Venue: </span>
+							{ticket.place}
+						</p>
+						<p>
+							<span>Location: </span>
+							{ticket.location}
+						</p>
+						<p>
+							<span>Price: </span>$50
+						</p>
+					</div>
+				</div>
+				<form className="form" onSubmit={handleSubmit}>
+					<label className="form__label" htmlFor="name">
+						NAME
+					</label>
+					<input
+						onChange={nameInputChangeHandler}
+						onBlur={nameInputBlurHandler}
+						className={nameInputClasses}
+						type="text"
+						name="name"
+						value={enteredName}
+						placeholder="Full name"
+					/>
+					{nameInputIsValid && (
+						<p className="invalidInput">Name must not be empty.</p>
+					)}
+
+					<label className="form__label" htmlFor="card">
+						CREDIT CARD
+					</label>
+					<input
+						onChange={cardInputChangeHandler}
+						onBlur={cardInputBlurHandler}
+						className={cardInputClasses}
+						type="number"
+						name="card"
+						value={enteredCard}
+						placeholder="16 digits (no special characters)"
+					/>
+					{cardInputIsValid && (
+						<p className="invalidInput">
+							Card must have 16 digits, no special characters and must not be
+							empty.
+						</p>
+					)}
+					<div className="form__actions">
+						<Button type="submit">Purchase</Button>
+					</div>
+				</form>
+				<form></form>
+
+				<div className="buyTicket__actions">
+					<Button type="button" onClick={() => navigate(-1)}>
+						Go Back
+					</Button>
 				</div>
 			</main>
 		</section>

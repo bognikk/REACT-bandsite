@@ -1,0 +1,214 @@
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/mixins" as *;
+
+// =========================== TICKET DETAILS ================================
+
+.buyTicket {
+	padding: $padding $padding 0;
+
+	@include tablet {
+		padding: $padding calc($padding * 2.5) calc($padding * 2);
+	}
+
+	@include desktop {
+		display: flex;
+		padding: calc($padding * 3) calc($padding * 8.5) calc($padding * 2);
+	}
+
+	&__heading {
+		@include section-heading;
+		padding: $padding 0;
+		font-weight: 600;
+
+		@include tablet {
+			padding: 0 calc($padding * 9.5) 0 0;
+			padding: calc($padding * 2) 0;
+		}
+
+		@include desktop {
+			padding: 0 calc($padding / 0.5) 0 0;
+		}
+	}
+
+	&__main-container {
+		@include desktop {
+			width: 100%;
+		}
+	}
+
+	&__details--wrapper {
+		display: flex;
+	}
+
+	&__details {
+		p {
+			&:first-of-type {
+				margin: 0;
+			}
+
+			span {
+				font-weight: 700;
+				color: #323232;
+			}
+		}
+
+		h2 {
+			margin-bottom: 1rem;
+		}
+
+		&:first-of-type {
+			width: 20%;
+		}
+
+		&:last-of-type {
+			width: 80%;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: end;
+		margin-top: 2rem;
+
+		> :first-child {
+			margin-right: 1rem;
+		}
+	}
+
+	// ============ form ============
+	.form {
+		position: relative;
+		display: flex;
+		padding: $padding 0;
+		max-width: 20rem;
+
+		@include tablet {
+			// padding: $padding * 2 $padding * 4 $padding;
+		}
+
+		@include desktop {
+			// padding: $padding * 2 $padding * 16.5 $padding;
+		}
+	}
+
+	.img-container {
+		height: 36px;
+		min-width: 36px;
+		margin: $margin $margin 0 0;
+		border-radius: 50%;
+		background: url("../../assets/images/Mohan-muruge.jpg") center/cover
+			no-repeat;
+
+		@include tablet {
+			min-width: 48px;
+			height: 48px;
+		}
+	}
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		font-weight: 600;
+
+		&__label {
+			margin-bottom: 4px;
+			color: $primary-gray;
+			font-size: 10px;
+			border-radius: 4px;
+
+			@include tablet {
+				@include body-text;
+				font-weight: 600;
+			}
+		}
+
+		&__input {
+			height: 36px;
+			padding: 12px;
+			margin-bottom: $margin;
+			color: black;
+			border: 2px solid $secondary-gray;
+			border-radius: 4px;
+			background-color: $secondary-white;
+
+			&:focus {
+				border: 2px solid black;
+				outline: none;
+
+				&::placeholder {
+					visibility: hidden;
+				}
+			}
+
+			&::placeholder {
+				opacity: 1;
+				color: black;
+			}
+
+			@include tablet {
+				@include body-text;
+				height: 48px;
+			}
+
+			.invalid {
+				border: 2px solid red;
+			}
+		}
+
+		&__textarea {
+			height: 100px;
+			min-height: 36px;
+			padding: 12px;
+			margin-bottom: $margin;
+			border-radius: 4px;
+			border: 2px solid $secondary-gray;
+			color: black;
+			resize: none;
+			background-color: $secondary-white;
+
+			&:focus {
+				border: 2px solid black;
+				outline: none !important;
+
+				&::placeholder {
+					visibility: hidden;
+				}
+			}
+
+			&::placeholder {
+				opacity: 1;
+				color: black;
+				text-align: left;
+			}
+		}
+
+		.invalidField {
+			border: 2px solid red;
+		}
+
+		.invalidInput {
+			margin-top: -0.7rem;
+			margin-bottom: 1rem;
+			color: red;
+			font-size: 13px;
+		}
+
+		&__actions {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		&__btn {
+			align-self: flex-end;
+			min-width: 150px;
+			max-width: 150px;
+			margin-bottom: calc($margin/2);
+
+			&:first-of-type {
+				max-width: 300px;
+			}
+		}
+	}
+}
