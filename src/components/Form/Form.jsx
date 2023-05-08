@@ -2,7 +2,6 @@ import axios from "axios";
 import useInput from "../../hooks/use-input";
 import { sendRandomPost } from "../../assets/functions/functions";
 
-import { useState } from "react";
 import "./Form.scss";
 import Button from "../UI/Button/Button";
 
@@ -10,6 +9,9 @@ const BASE_URL = "https://project-1-api.herokuapp.com";
 const API_KEY = "40518c69-705d-4039-82fd-8693758271c5";
 
 const Form = ({ onError }) => {
+	// ----------FORM VALIDATION
+
+	// ----------NAME
 	const {
 		value: enteredName,
 		isValid: enteredNameIsValid,
@@ -18,32 +20,24 @@ const Form = ({ onError }) => {
 		inputBlurHandler: nameBlurHandler,
 		reset: resetNameInput,
 	} = useInput((value) => value.trim() !== "");
-	// ----------FORM VALIDATION
-
-	// ----------NAME
 
 	const nameInputClasses = nameInputHasError
 		? "form__input invalidField"
 		: "form__input";
 
 	// ----------COMMENT
-	const [enteredComment, setEnteredComment] = useState("");
-	const [enteredCommentTouched, setEnteredCommentIsTouched] = useState(false);
+	const {
+		value: enteredComment,
+		isValid: enteredCommentIsValid,
+		hasError: commentInputHasError,
+		valueChangeHandler: commentChangeHandler,
+		inputBlurHandler: commentBlurHandler,
+		reset: resetCommentInput,
+	} = useInput((value) => value.trim() !== "");
 
-	const enteredCommentIsValid = enteredComment.trim() !== "";
-
-	const commentInputIsValid = !enteredCommentIsValid && enteredCommentTouched;
-	const commentInputClasses = commentInputIsValid
+	const commentInputClasses = commentInputHasError
 		? "form__textarea invalidField"
 		: "form__textarea";
-
-	const commentInputChangeHandler = (event) => {
-		setEnteredComment(event.target.value);
-	};
-
-	const commentInputBlurHandler = () => {
-		setEnteredCommentIsTouched(true);
-	};
 
 	let formIsValid = false;
 	if (enteredCommentIsValid && enteredCommentIsValid) {
@@ -53,8 +47,6 @@ const Form = ({ onError }) => {
 	// ----------SUBMIT
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-
-		setEnteredCommentIsTouched(true);
 
 		if (!enteredNameIsValid || !enteredCommentIsValid) {
 			return;
@@ -74,8 +66,7 @@ const Form = ({ onError }) => {
 		}
 
 		resetNameInput();
-		setEnteredComment("");
-		setEnteredCommentIsTouched(false);
+		resetCommentInput();
 	};
 
 	return (
@@ -103,14 +94,14 @@ const Form = ({ onError }) => {
 					COMMENT
 				</label>
 				<textarea
-					onChange={commentInputChangeHandler}
-					onBlur={commentInputBlurHandler}
+					onChange={commentChangeHandler}
+					onBlur={commentBlurHandler}
 					className={commentInputClasses}
 					name="comment"
 					placeholder="Add a new comment"
 					value={enteredComment}
 				></textarea>
-				{commentInputIsValid && (
+				{commentInputHasError && (
 					<p className="invalidInput">Comment must not be empty.</p>
 				)}
 				<div className="form__actions">

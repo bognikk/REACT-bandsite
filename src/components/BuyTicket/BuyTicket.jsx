@@ -1,4 +1,5 @@
 import axios from "axios";
+import useInput from "../../hooks/use-input";
 
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../UI/Button/Button";
@@ -37,74 +38,53 @@ const BuyTicket = () => {
 	// FORM
 
 	// ----------NAME
-	const [enteredName, setEnteredName] = useState("");
-	const [enteredNameTouched, setEnteredNameIsTouched] = useState(false);
+	const {
+		value: enteredName,
+		isValid: enteredNameIsValid,
+		hasError: nameInputHasError,
+		valueChangeHandler: nameChangeHandler,
+		inputBlurHandler: nameBlurHandler,
+		reset: resetNameInput,
+	} = useInput((value) => value.trim() !== "");
 
-	const enteredNameIsValid = enteredName.trim() !== "";
-
-	const nameInputIsValid = !enteredNameIsValid && enteredNameTouched;
-	const nameInputClasses = nameInputIsValid
+	const nameInputClasses = nameInputHasError
 		? "form__input invalidField"
 		: "form__input";
-
-	const nameInputChangeHandler = (event) => {
-		setEnteredName(event.target.value);
-	};
-
-	const nameInputBlurHandler = () => {
-		setEnteredNameIsTouched(true);
-	};
 
 	// ----------CARD
-	const [enteredCard, setEnteredCard] = useState("");
-	const [enteredCardTouched, setEnteredCardIsTouched] = useState(false);
+	const {
+		value: enteredCard,
+		isValid: enteredCardIsValid,
+		hasError: cardInputHasError,
+		valueChangeHandler: cardChangeHandler,
+		inputBlurHandler: cardBlurHandler,
+		reset: resetCardInput,
+	} = useInput((value) => value.trim() !== "" && value.length === 16);
 
-	const enteredCardIsValid =
-		enteredCard.trim() !== "" && enteredCard.length === 16;
-
-	const cardInputIsValid = !enteredCardIsValid && enteredCardTouched;
-	const cardInputClasses = cardInputIsValid
+	const cardInputClasses = cardInputHasError
 		? "form__input invalidField"
 		: "form__input";
 
-	const cardInputChangeHandler = (event) => {
-		setEnteredCard(event.target.value);
-	};
-
-	const cardInputBlurHandler = () => {
-		setEnteredCardIsTouched(true);
-	};
-
 	// ----------EMAIL
-	const [enteredEmail, setEnteredEmail] = useState("");
-	const [enteredEmailTouched, setEnteredEmailIsTouched] = useState(false);
-
 	const isEmail = (email) =>
 		/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
 
-	const enteredEmailIsValid =
-		enteredName.trim() !== "" && isEmail(enteredEmail);
+	const {
+		value: enteredEmail,
+		isValid: enteredEmailIsValid,
+		hasError: emailInputHasError,
+		valueChangeHandler: emailChangeHandler,
+		inputBlurHandler: emailBlurHandler,
+		reset: resetEmailInput,
+	} = useInput((value) => value.trim() !== "" && isEmail(value));
 
-	const emailInputIsValid = !enteredEmailIsValid && enteredEmailTouched;
-	const emailInputClasses = emailInputIsValid
+	const emailInputClasses = emailInputHasError
 		? "form__input invalidField"
 		: "form__input";
-
-	const emailInputChangeHandler = (event) => {
-		setEnteredEmail(event.target.value);
-	};
-
-	const emailInputBlurHandler = () => {
-		setEnteredEmailIsTouched(true);
-	};
 
 	// ----------SUBMIT
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-
-		setEnteredNameIsTouched(true);
-		setEnteredEmailIsTouched(true);
-		setEnteredCardIsTouched(true);
 
 		if (!enteredNameIsValid || !enteredEmailIsValid || !enteredCardIsValid) {
 			return;
@@ -127,12 +107,9 @@ const BuyTicket = () => {
 			}
 		}
 
-		setEnteredName("");
-		setEnteredNameIsTouched(false);
-		setEnteredCard("");
-		setEnteredCardIsTouched(false);
-		setEnteredEmail("");
-		setEnteredEmailIsTouched(false);
+		resetNameInput();
+		resetEmailInput();
+		resetCardInput();
 	};
 
 	return (
@@ -163,29 +140,31 @@ const BuyTicket = () => {
 						NAME
 					</label>
 					<input
-						onChange={nameInputChangeHandler}
-						onBlur={nameInputBlurHandler}
+						onChange={nameChangeHandler}
+						onBlur={nameBlurHandler}
 						className={nameInputClasses}
 						type="text"
 						name="name"
 						value={enteredName}
 						placeholder="First and last name"
 					/>
-					{nameInputIsValid && <p className="invalidInput">Name on the card</p>}
+					{nameInputHasError && (
+						<p className="invalidInput">Name on the card</p>
+					)}
 
 					<label className="form__label" htmlFor="email">
 						EMAIL
 					</label>
 					<input
-						onChange={emailInputChangeHandler}
-						onBlur={emailInputBlurHandler}
+						onChange={emailChangeHandler}
+						onBlur={emailBlurHandler}
 						className={emailInputClasses}
 						type="email"
 						name="email"
 						value={enteredEmail}
 						placeholder="@ . and domain"
 					/>
-					{emailInputIsValid && (
+					{emailInputHasError && (
 						<p className="invalidInput">
 							Email must not be empty, and must contain "email" elements.
 						</p>
@@ -195,15 +174,15 @@ const BuyTicket = () => {
 						CREDIT CARD
 					</label>
 					<input
-						onChange={cardInputChangeHandler}
-						onBlur={cardInputBlurHandler}
+						onChange={cardChangeHandler}
+						onBlur={cardBlurHandler}
 						className={cardInputClasses}
 						type="number"
 						name="card"
 						value={enteredCard}
 						placeholder="16 digits (no special characters)"
 					/>
-					{cardInputIsValid && (
+					{cardInputHasError && (
 						<p className="invalidInput">
 							Card must have 16 digits, no special characters and must not be
 							empty.
