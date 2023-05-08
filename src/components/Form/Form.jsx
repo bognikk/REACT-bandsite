@@ -1,4 +1,5 @@
 import axios from "axios";
+import useInput from "../../hooks/use-input";
 import { sendRandomPost } from "../../assets/functions/functions";
 
 import { useState } from "react";
@@ -9,26 +10,21 @@ const BASE_URL = "https://project-1-api.herokuapp.com";
 const API_KEY = "40518c69-705d-4039-82fd-8693758271c5";
 
 const Form = ({ onError }) => {
+	const {
+		value: enteredName,
+		isValid: enteredNameIsValid,
+		hasError: nameInputHasError,
+		valueChangeHandler: nameChangeHandler,
+		inputBlurHandler: nameBlurHandler,
+		reset: resetNameInput,
+	} = useInput((value) => value.trim() !== "");
 	// ----------FORM VALIDATION
 
 	// ----------NAME
-	const [enteredName, setEnteredName] = useState("");
-	const [enteredNameTouched, setEnteredNameIsTouched] = useState(false);
 
-	const enteredNameIsValid = enteredName.trim() !== "";
-
-	const nameInputIsValid = !enteredNameIsValid && enteredNameTouched;
-	const nameInputClasses = nameInputIsValid
+	const nameInputClasses = nameInputHasError
 		? "form__input invalidField"
 		: "form__input";
-
-	const nameInputChangeHandler = (event) => {
-		setEnteredName(event.target.value);
-	};
-
-	const nameInputBlurHandler = () => {
-		setEnteredNameIsTouched(true);
-	};
 
 	// ----------COMMENT
 	const [enteredComment, setEnteredComment] = useState("");
@@ -49,11 +45,15 @@ const Form = ({ onError }) => {
 		setEnteredCommentIsTouched(true);
 	};
 
+	let formIsValid = false;
+	if (enteredCommentIsValid && enteredCommentIsValid) {
+		formIsValid = true;
+	}
+
 	// ----------SUBMIT
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		setEnteredNameIsTouched(true);
 		setEnteredCommentIsTouched(true);
 
 		if (!enteredNameIsValid || !enteredCommentIsValid) {
@@ -73,8 +73,7 @@ const Form = ({ onError }) => {
 			}
 		}
 
-		setEnteredName("");
-		setEnteredNameIsTouched(false);
+		resetNameInput();
 		setEnteredComment("");
 		setEnteredCommentIsTouched(false);
 	};
@@ -87,8 +86,8 @@ const Form = ({ onError }) => {
 					NAME
 				</label>
 				<input
-					onChange={nameInputChangeHandler}
-					onBlur={nameInputBlurHandler}
+					onChange={nameChangeHandler}
+					onBlur={nameBlurHandler}
 					className={nameInputClasses}
 					type="text"
 					name="name"
@@ -96,7 +95,7 @@ const Form = ({ onError }) => {
 					placeholder="Enter your name"
 					value={enteredName}
 				/>
-				{nameInputIsValid && (
+				{nameInputHasError && (
 					<p className="invalidInput">Name must not be empty.</p>
 				)}
 
@@ -118,7 +117,7 @@ const Form = ({ onError }) => {
 					<Button onClick={sendRandomPost} type="button" className="form__btn">
 						GENERATE RANDOM COMMENT
 					</Button>
-					<Button type="submit" className="form__btn">
+					<Button type="submit" className="form__btn" disabled={!formIsValid}>
 						COMMENT
 					</Button>
 				</div>
