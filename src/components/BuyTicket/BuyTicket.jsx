@@ -1,5 +1,4 @@
 import axios from "axios";
-import emailjs from "@emailjs/browser";
 
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../UI/Button/Button";
@@ -109,17 +108,9 @@ const BuyTicket = () => {
 		}
 	};
 
-	const formData = {
-		user_email: enteredEmail,
-		to_name: enteredName,
-		message: "Test message!!",
-	};
-
 	// ----------SUBMIT
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-
-		console.log(formData);
 
 		setEnteredNameIsTouched(true);
 		setEnteredEmailIsTouched(true);
@@ -160,24 +151,6 @@ const BuyTicket = () => {
 				return;
 			}
 		}
-
-		// SEND EMAIL
-
-		emailjs
-			.sendForm(
-				process.env.REACT_APP_EMAILJS_SERVICE_ID,
-				process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-				formData,
-				process.env.REACT_APP_EMAILJS_USER_ID
-			)
-			.then(
-				(result) => {
-					console.log(result.text);
-				},
-				(error) => {
-					console.log("Error: ", error.text);
-				}
-			);
 
 		setEnteredName("");
 		setEnteredCard("");

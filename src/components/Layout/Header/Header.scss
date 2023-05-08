@@ -19,6 +19,18 @@
 		padding: 3.5px calc($padding * 8) 0;
 	}
 
+	&.stickyHeader {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 9999;
+
+		a {
+			padding: 0.5rem 0;
+		}
+	}
+
 	// ============ header logo ============
 
 	&__logo {
