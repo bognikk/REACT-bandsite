@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import Button from "../UI/Button/Button";
 
 import "./Gigs.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Gigs = () => {
 	const [shows, setShows] = useState([]);
 	const BASE_URL = "https://project-1-api.herokuapp.com";
 	const API_KEY = "40518c69-705d-4039-82fd-8693758271c5";
 	const [successfulFetch, setSuccessfulFetch] = useState(true);
+
+	let navigate = useNavigate();
 
 	useEffect(() => {
 		const getShows = async () => {
@@ -57,9 +59,12 @@ const Gigs = () => {
 						<p className="card__section__title">LOCATION</p>
 						<p className="card__section__text">{show.location}</p>
 					</div>
-					<Link to={`ticket/${show.id}`}>
-						<Button className="card__btn">VIEW EVENT</Button>
-					</Link>
+					<Button
+						className="card__btn"
+						onClick={() => navigate(`ticket/${show.id}`)}
+					>
+						VIEW EVENT
+					</Button>
 				</div>
 			</>
 		);

@@ -68,8 +68,13 @@
 
 	&__actions {
 		display: flex;
-		justify-content: end;
 		margin-top: 2rem;
+		margin-bottom: 2rem;
+
+		@include tablet {
+			margin-bottom: 0;
+			justify-content: end;
+		}
 
 		> :first-child {
 			margin-right: 1rem;
