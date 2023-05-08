@@ -77,9 +77,7 @@ const TicketDetails = () => {
 				</div>
 				<div className="tiketDetails__actions">
 					<Button onClick={() => navigate(-1)}>Go Back</Button>
-					<Link to={`purchase`}>
-						<Button>Buy Ticket</Button>
-					</Link>
+					<Button onClick={() => navigate("purchase")}>Buy Ticket</Button>
 				</div>
 			</main>
 		</section>
