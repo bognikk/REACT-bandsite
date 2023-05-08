@@ -13,46 +13,40 @@ const Form = ({ onError }) => {
 
 	// ----------NAME
 	const [enteredName, setEnteredName] = useState("");
-	const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
 	const [enteredNameTouched, setEnteredNameIsTouched] = useState(false);
+
+	const enteredNameIsValid = enteredName.trim() !== "";
+
+	const nameInputIsValid = !enteredNameIsValid && enteredNameTouched;
+	const nameInputClasses = nameInputIsValid
+		? "form__input invalidField"
+		: "form__input";
 
 	const nameInputChangeHandler = (event) => {
 		setEnteredName(event.target.value);
-
-		if (event.target.value.trim() !== "") {
-			setEnteredNameIsValid(true);
-		}
 	};
 
 	const nameInputBlurHandler = () => {
 		setEnteredNameIsTouched(true);
-
-		if (enteredName.trim() === "") {
-			setEnteredNameIsValid(false);
-			return;
-		}
 	};
 
 	// ----------COMMENT
 	const [enteredComment, setEnteredComment] = useState("");
-	const [enteredCommentIsValid, setEnteredCommentIsValid] = useState(false);
 	const [enteredCommentTouched, setEnteredCommentIsTouched] = useState(false);
+
+	const enteredCommentIsValid = enteredComment.trim() !== "";
+
+	const commentInputIsValid = !enteredCommentIsValid && enteredCommentTouched;
+	const commentInputClasses = commentInputIsValid
+		? "form__textarea invalidField"
+		: "form__textarea";
 
 	const commentInputChangeHandler = (event) => {
 		setEnteredComment(event.target.value);
-
-		if (event.target.value.trim() !== "") {
-			setEnteredCommentIsValid(true);
-		}
 	};
 
 	const commentInputBlurHandler = () => {
 		setEnteredCommentIsTouched(true);
-
-		if (enteredComment.trim() === "") {
-			setEnteredCommentIsValid(false);
-			return;
-		}
 	};
 
 	// ----------SUBMIT
@@ -62,18 +56,9 @@ const Form = ({ onError }) => {
 		setEnteredNameIsTouched(true);
 		setEnteredCommentIsTouched(true);
 
-		if (enteredName.trim() === "") {
-			setEnteredNameIsValid(false);
+		if (!enteredNameIsValid || !enteredCommentIsValid) {
 			return;
 		}
-
-		if (enteredComment.trim() === "") {
-			setEnteredCommentIsValid(false);
-			return;
-		}
-
-		setEnteredNameIsValid(true);
-		setEnteredCommentIsValid(true);
 
 		// POST
 		try {
@@ -89,18 +74,10 @@ const Form = ({ onError }) => {
 		}
 
 		setEnteredName("");
+		setEnteredNameIsTouched(false);
 		setEnteredComment("");
+		setEnteredCommentIsTouched(false);
 	};
-
-	const nameInputIsValid = !enteredNameIsValid && enteredNameTouched;
-	const nameInputClasses = nameInputIsValid
-		? "form__input invalidField"
-		: "form__input";
-
-	const commentInputIsValid = !enteredCommentIsValid && enteredCommentTouched;
-	const commentInputClasses = commentInputIsValid
-		? "form__textarea invalidField"
-		: "form__textarea";
 
 	return (
 		<div className="form-container">

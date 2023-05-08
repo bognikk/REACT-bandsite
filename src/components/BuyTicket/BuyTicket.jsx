@@ -38,74 +38,64 @@ const BuyTicket = () => {
 
 	// ----------NAME
 	const [enteredName, setEnteredName] = useState("");
-	const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
 	const [enteredNameTouched, setEnteredNameIsTouched] = useState(false);
+
+	const enteredNameIsValid = enteredName.trim() !== "";
+
+	const nameInputIsValid = !enteredNameIsValid && enteredNameTouched;
+	const nameInputClasses = nameInputIsValid
+		? "form__input invalidField"
+		: "form__input";
 
 	const nameInputChangeHandler = (event) => {
 		setEnteredName(event.target.value);
-
-		if (event.target.value.trim() !== "") {
-			setEnteredNameIsValid(true);
-		}
 	};
 
 	const nameInputBlurHandler = () => {
 		setEnteredNameIsTouched(true);
-
-		if (enteredName.trim() === "") {
-			setEnteredNameIsValid(false);
-			return;
-		}
 	};
 
 	// ----------CARD
 	const [enteredCard, setEnteredCard] = useState("");
-	const [enteredCardIsValid, setEnteredCardIsValid] = useState(false);
 	const [enteredCardTouched, setEnteredCardIsTouched] = useState(false);
+
+	const enteredCardIsValid =
+		enteredCard.trim() !== "" && enteredCard.length === 16;
+
+	const cardInputIsValid = !enteredCardIsValid && enteredCardTouched;
+	const cardInputClasses = cardInputIsValid
+		? "form__input invalidField"
+		: "form__input";
 
 	const cardInputChangeHandler = (event) => {
 		setEnteredCard(event.target.value);
-
-		if (event.target.value.trim() !== "") {
-			setEnteredCardIsValid(true);
-		}
 	};
 
 	const cardInputBlurHandler = () => {
 		setEnteredCardIsTouched(true);
-		console.log(enteredCard);
-
-		if (enteredCard.trim() === "" || enteredCard.length !== 16) {
-			setEnteredCardIsValid(false);
-			return;
-		} else if (enteredCard.trim() !== "" && enteredCard.trim().length === 16) {
-			setEnteredCardIsValid(true);
-		}
 	};
 
 	// ----------EMAIL
 	const [enteredEmail, setEnteredEmail] = useState("");
-	const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(false);
 	const [enteredEmailTouched, setEnteredEmailIsTouched] = useState(false);
 
 	const isEmail = (email) =>
 		/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
 
+	const enteredEmailIsValid =
+		enteredName.trim() !== "" && isEmail(enteredEmail);
+
+	const emailInputIsValid = !enteredEmailIsValid && enteredEmailTouched;
+	const emailInputClasses = emailInputIsValid
+		? "form__input invalidField"
+		: "form__input";
+
 	const emailInputChangeHandler = (event) => {
 		setEnteredEmail(event.target.value);
-
-		if (event.target.value.trim() !== "") {
-			setEnteredEmailIsValid(true);
-		}
 	};
 
 	const emailInputBlurHandler = () => {
 		setEnteredEmailIsTouched(true);
-
-		if (enteredEmail.trim() === "" || !isEmail(enteredEmail)) {
-			setEnteredEmailIsValid(false);
-			return;
-		}
 	};
 
 	// ----------SUBMIT
@@ -116,24 +106,9 @@ const BuyTicket = () => {
 		setEnteredEmailIsTouched(true);
 		setEnteredCardIsTouched(true);
 
-		if (enteredName.trim() === "") {
-			setEnteredNameIsValid(false);
+		if (!enteredNameIsValid || !enteredEmailIsValid || !enteredCardIsValid) {
 			return;
 		}
-
-		if (enteredEmail.trim() === "") {
-			setEnteredEmailIsValid(false);
-			return;
-		}
-
-		if (enteredCard.trim() === "") {
-			setEnteredCardIsValid(false);
-			return;
-		}
-
-		setEnteredNameIsValid(true);
-		setEnteredCardIsValid(true);
-		setEnteredEmailIsValid(true);
 
 		// POST
 		try {
@@ -153,24 +128,12 @@ const BuyTicket = () => {
 		}
 
 		setEnteredName("");
+		setEnteredNameIsTouched(false);
 		setEnteredCard("");
+		setEnteredCardIsTouched(false);
 		setEnteredEmail("");
+		setEnteredEmailIsTouched(false);
 	};
-
-	const nameInputIsValid = !enteredNameIsValid && enteredNameTouched;
-	const nameInputClasses = nameInputIsValid
-		? "form__input invalidField"
-		: "form__input";
-
-	const cardInputIsValid = !enteredCardIsValid && enteredCardTouched;
-	const cardInputClasses = cardInputIsValid
-		? "form__input invalidField"
-		: "form__input";
-
-	const emailInputIsValid = !enteredEmailIsValid && enteredEmailTouched;
-	const emailInputClasses = emailInputIsValid
-		? "form__input invalidField"
-		: "form__input";
 
 	return (
 		<section className="buyTicket">
