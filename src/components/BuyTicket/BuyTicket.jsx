@@ -1,4 +1,5 @@
 import axios from "axios";
+import emailjs from "@emailjs/browser";
 
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../UI/Button/Button";
@@ -83,15 +84,54 @@ const BuyTicket = () => {
 		}
 	};
 
+	// ----------EMAIL
+	const [enteredEmail, setEnteredEmail] = useState("");
+	const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(false);
+	const [enteredEmailTouched, setEnteredEmailIsTouched] = useState(false);
+
+	const isEmail = (email) =>
+		/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
+
+	const emailInputChangeHandler = (event) => {
+		setEnteredEmail(event.target.value);
+
+		if (event.target.value.trim() !== "") {
+			setEnteredEmailIsValid(true);
+		}
+	};
+
+	const emailInputBlurHandler = () => {
+		setEnteredEmailIsTouched(true);
+
+		if (enteredEmail.trim() === "" || !isEmail(enteredEmail)) {
+			setEnteredEmailIsValid(false);
+			return;
+		}
+	};
+
+	const formData = {
+		user_email: enteredEmail,
+		to_name: enteredName,
+		message: "Test message!!",
+	};
+
 	// ----------SUBMIT
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
+		console.log(formData);
+
 		setEnteredNameIsTouched(true);
+		setEnteredEmailIsTouched(true);
 		setEnteredCardIsTouched(true);
 
 		if (enteredName.trim() === "") {
 			setEnteredNameIsValid(false);
+			return;
+		}
+
+		if (enteredEmail.trim() === "") {
+			setEnteredEmailIsValid(false);
 			return;
 		}
 
@@ -102,6 +142,7 @@ const BuyTicket = () => {
 
 		setEnteredNameIsValid(true);
 		setEnteredCardIsValid(true);
+		setEnteredEmailIsValid(true);
 
 		// POST
 		try {
@@ -109,6 +150,7 @@ const BuyTicket = () => {
 				`https://react-all-in-one-default-rtdb.firebaseio.com/tickets.json`,
 				{
 					name: enteredName,
+					email: enteredEmail,
 					card: enteredCard,
 				}
 			);
@@ -119,8 +161,27 @@ const BuyTicket = () => {
 			}
 		}
 
+		// SEND EMAIL
+
+		emailjs
+			.sendForm(
+				process.env.REACT_APP_EMAILJS_SERVICE_ID,
+				process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+				formData,
+				process.env.REACT_APP_EMAILJS_USER_ID
+			)
+			.then(
+				(result) => {
+					console.log(result.text);
+				},
+				(error) => {
+					console.log("Error: ", error.text);
+				}
+			);
+
 		setEnteredName("");
 		setEnteredCard("");
+		setEnteredEmail("");
 	};
 
 	const nameInputIsValid = !enteredNameIsValid && enteredNameTouched;
@@ -130,6 +191,11 @@ const BuyTicket = () => {
 
 	const cardInputIsValid = !enteredCardIsValid && enteredCardTouched;
 	const cardInputClasses = cardInputIsValid
+		? "form__input invalidField"
+		: "form__input";
+
+	const emailInputIsValid = !enteredEmailIsValid && enteredEmailTouched;
+	const emailInputClasses = emailInputIsValid
 		? "form__input invalidField"
 		: "form__input";
 
@@ -167,10 +233,26 @@ const BuyTicket = () => {
 						type="text"
 						name="name"
 						value={enteredName}
-						placeholder="Full name"
+						placeholder="First and last name"
 					/>
-					{nameInputIsValid && (
-						<p className="invalidInput">Name must not be empty.</p>
+					{nameInputIsValid && <p className="invalidInput">Name on the card</p>}
+
+					<label className="form__label" htmlFor="email">
+						EMAIL
+					</label>
+					<input
+						onChange={emailInputChangeHandler}
+						onBlur={emailInputBlurHandler}
+						className={emailInputClasses}
+						type="email"
+						name="email"
+						value={enteredEmail}
+						placeholder="@ . and domain"
+					/>
+					{emailInputIsValid && (
+						<p className="invalidInput">
+							Email must not be empty, and must contain "email" elements.
+						</p>
 					)}
 
 					<label className="form__label" htmlFor="card">
