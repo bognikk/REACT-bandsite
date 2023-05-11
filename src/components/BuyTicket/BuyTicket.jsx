@@ -82,6 +82,11 @@ const BuyTicket = () => {
 		? "form__input invalidField"
 		: "form__input";
 
+	let formIsValid = false;
+	if (enteredNameIsValid && enteredEmailIsValid && enteredCardIsValid) {
+		formIsValid = true;
+	}
+
 	// ----------SUBMIT
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -189,7 +194,9 @@ const BuyTicket = () => {
 						</p>
 					)}
 					<div className="form__actions">
-						<Button type="submit">Purchase</Button>
+						<Button type="submit" disabled={!formIsValid}>
+							Purchase
+						</Button>
 					</div>
 				</form>
 				<form></form>

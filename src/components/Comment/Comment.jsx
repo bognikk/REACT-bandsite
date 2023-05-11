@@ -6,7 +6,7 @@ const Comment = ({ commentsProp, onDelete, onLike }) => {
 	const post = commentsProp.map((comment) => {
 		return (
 			<div className="comment" key={comment.id}>
-				<div className="comment__img"></div>
+				<img className="comment__img" alt="avatar" />
 				<div className="comment__container">
 					<div className="comment__container__upper">
 						<div className="comment__name">{comment.name}</div>
